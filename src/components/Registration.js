@@ -25,7 +25,7 @@ class Registration extends Component {
     this.setState({ error: '', loading: true });
 
     // NOTE Post to HTTPS only in production
-    axios.post("http://localhost:4000/api/users/signup",{
+    axios.post("http://localhost:4000/api/v1/sign_up",{
       user: {
         email: email,
         password: password,
@@ -33,7 +33,6 @@ class Registration extends Component {
       }
     },)
     .then((response) => {
-        console.log(response)
       deviceStorage.saveKey("id_token", response.data.jwt);
       this.props.newJWT(response.data.jwt);
     })
